@@ -26,7 +26,7 @@ Click Create
 
 2. 📦 Code Download
    ```git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
-   cd microservices-demo/release
+   cd microservices-demo/release```
 
 3. 🚢 Deploy Microservices
 Deploy all services using:
