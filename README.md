@@ -25,12 +25,12 @@ Click Create
 
 
 2. 📦 Code Download
-   git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
-   cd microservices-demo/release
+   'git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
+   cd microservices-demo/release'
 
 3. 🚢 Deploy Microservices
 Deploy all services using:
-   kubectl apply -f kubernetes-manifests.yaml
+   'kubectl apply -f kubernetes-manifests.yaml'
 
 This deploys:
 
@@ -45,39 +45,39 @@ Ad Service
 
 
 4. ✅ Verify Deployment
-   kubectl get pods
+   'kubectl get pods
    kubectl get deploy
-   kubectl get svc
+   kubectl get svc'
 
 5. 🌐 Access the Application
 
 Get the external IP of the frontend service:
-   kubectl get svc
+   'kubectl get svc'
 
 Copy the external IP of the frontend service
 Open it in your browser (use http:// if https:// fails)
 
 📊 Monitoring Setup (Prometheus + Grafana)
 Create Monitoring Namespace
-   kubectl get ns
+   'kubectl get ns
    kubectl create ns monitor
-   kubectl get ns
+   kubectl get ns'
 
 Install Prometheus Stack via Helm
-   helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+   'helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
    helm repo update
-   helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack --namespace monitor
+   helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack --namespace monitor'
 
 Expose Grafana Dashboard
-   kubectl expose deployment kube-prometheus-stack-grafana \
+   'kubectl expose deployment kube-prometheus-stack-grafana \
    --port=3000 --target-port=3000 \
-   --name=grafana --type=LoadBalancer -n monitor
+   --name=grafana --type=LoadBalancer -n monitor'
 
-   kubectl get svc -n monitor
+   'kubectl get svc -n monitor'
 
 Get Grafana Admin Password
-   kubectl --namespace monitor get secrets kube-prometheus-stack-grafana \
-  -o jsonpath="{.data.admin-password}" | base64 -d ; echo
+   'kubectl --namespace monitor get secrets kube-prometheus-stack-grafana \
+  -o jsonpath="{.data.admin-password}" | base64 -d ; echo'
 
 📎 References
 
