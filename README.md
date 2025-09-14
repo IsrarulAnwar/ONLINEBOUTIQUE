@@ -107,4 +107,6 @@ Prometheus Helm Chart
 
 <img width="1360" height="691" alt="image" src="https://github.com/user-attachments/assets/6b7d64bd-6b39-486c-b0d1-8dce780125ac" />
 
+<img width="1360" height="693" alt="image" src="https://github.com/user-attachments/assets/5e40a1c1-6c9b-4393-9d4d-601cc6146cda" />
+
 Thanks!
