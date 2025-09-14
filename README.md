@@ -1,65 +1,91 @@
 # ONLINEBOUTIQUE
 Deployed E-commerce website on K8s with monitoring through  Prometheus &amp; Grafana
 
-working on a Real-Time Project 'ONLINEBOUTIQUE', which involves:
+🛍️ ONLINEBOUTIQUE – Real-Time E-commerce Microservices Project
+This repository documents the deployment of ONLINEBOUTIQUE, a real-time e-commerce application built using a microservices architecture. The project demonstrates scalable deployment on Google Kubernetes Engine (GKE) with integrated monitoring using Prometheus and Grafana.
 
-Developing an e-commerce application using a microservices architecture
-Microservices built with Java / Python / Go / .NET
-Deployment target: Google Kubernetes Engine (GKE)
-Monitoring: Prometheus & Grafana
+🚀 Project Overview
 
-A detailed overview of the project deployment and commands used:
-Project Deployment Process
+Architecture: Microservices
+Languages Used: Java / Python / Go / .NET
+Deployment Platform: Google Kubernetes Engine (GKE)
+Monitoring Stack: Prometheus + Grafana
 
-Cluster Creation
-First, a Kubernetes cluster was created on Google Cloud:
-	1	Go to Google Cloud console
-	2	Navigate to Kubernetes Engine
-	3	Click Create, select Standard cluster
-	4	Configure with 3 nodes (1 node per zone)
-	5	Set node size (1 core, 8GB RAM was used)
-	6	Click Create
 
-Code Download
-git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
-cd microservices-demo
-cd release
+🛠️ Deployment Process
+1. 🔧 Cluster Creation on GKE
+Steps to create a Kubernetes cluster:
 
-Deployment Command
-The entire microservice application was deployed with a single command:
-kubectl apply -f kubernetes-manifests.yaml
-This command deployed all microservices including:
-	•	Frontend service
-	•	Cart service
-	•	Payment service
-	•	Email service
-	•	Currency service
-	•	Product service
-	•	Ad service
-	•	And others
+Go to the Google Cloud Console
+Navigate to Kubernetes Engine
+Click Create → Select Standard Cluster
+Configure with 3 nodes (1 per zone)
+Set node size: 1 vCPU, 8GB RAM
+Click Create
 
-Verification Commands
-To verify deployment:
-kubectl get pods
-kubectl get deploy
-kubectl get svc
-Testing the Application
-To access the application:
-	1	Get the external IP from the frontend service:kubectl get svc
-	2	Copy the external IP of the frontend service
-	3	Access it in a browser (remove 'https://' and use 'http://' if needed)
 
-Monitoring
+2. 📦 Code Download
+   git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
+   cd microservices-demo/release
 
-kubectl get ns
-kubectl create ns monitor
-kubectl get ns
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm repo update
-kubectl get po -n monitor
-helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack --namespace monitor
-kubectl get po -n monitor
-kubectl expose deployment kube-prometheus-stack-grafana --port=3000 --target-port=3000 --name=grafana --type=LoadBalancer -n monitor
-kubectl get svc -n monitor
-kubectl --namespace monitor get secrets kube-prometheus-stack-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
+3. 🚢 Deploy Microservices
+Deploy all services using:
+   kubectl apply -f kubernetes-manifests.yaml
 
+This deploys:
+
+Frontend Service
+Cart Service
+Payment Service
+Email Service
+Currency Service
+Product Service
+Ad Service
+...and more
+
+
+4. ✅ Verify Deployment
+   kubectl get pods
+   kubectl get deploy
+   kubectl get svc
+
+5. 🌐 Access the Application
+
+Get the external IP of the frontend service:
+   kubectl get svc
+
+Copy the external IP of the frontend service
+Open it in your browser (use http:// if https:// fails)
+
+📊 Monitoring Setup (Prometheus + Grafana)
+Create Monitoring Namespace
+   kubectl get ns
+   kubectl create ns monitor
+   kubectl get ns
+
+Install Prometheus Stack via Helm
+   helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+   helm repo update
+   helm install kube-prometheus-stack prometheus-community/kube-prometheus-stack --namespace monitor
+
+Expose Grafana Dashboard
+   kubectl expose deployment kube-prometheus-stack-grafana \
+   --port=3000 --target-port=3000 \
+   --name=grafana --type=LoadBalancer -n monitor
+
+   kubectl get svc -n monitor
+
+Get Grafana Admin Password
+   kubectl --namespace monitor get secrets kube-prometheus-stack-grafana \
+  -o jsonpath="{.data.admin-password}" | base64 -d ; echo
+
+📎 References
+
+GoogleCloudPlatform/microservices-demo
+Prometheus Helm Chart
+
+<img width="1360" height="688" alt="image" src="https://github.com/user-attachments/assets/021a64d8-4557-4f10-ba63-52cfeb906ba3" />
+
+<img width="1360" height="693" alt="image" src="https://github.com/user-attachments/assets/341c27d9-66d7-45f0-a653-00c1e33db725" />
+
+Thanks!
